@@ -23,8 +23,46 @@ exports.signup = function(req, res){
       req.session.user = user.id;
       req.session.username = user.username;
       req.session.msg = 'Authenticated as ' + user.username;
+      req.session.rev = "...."
       res.redirect('/');
     }
+  });
+};
+exports.signup2 = function(req, res){
+  console.log("Begin exports.signup");
+  var user = new User({username:req.body.username});
+  console.log("after new user exports.signup");
+  user.set('hashed_password', hashPW(req.body.password));
+  console.log("after hashing user exports.signup");
+  user.set('email', req.body.email);
+  console.log("after email user exports.signup");
+  user.save(function(err) {
+    console.log("In exports.signup");
+    console.log(err);
+    if (err){
+      res.session.error = err;
+      res.redirect('/index');
+    } else {
+      req.session.msg = 'user ' + user.username + ' successfully added';
+      req.session.rev = "...."
+
+      res.redirect('/');
+    }
+  });
+};
+exports.createReview = function(req, res){
+  User.findOne({ _id: req.session.user })
+  .exec(function(err, user) {
+    user.set('review', req.body.review);
+    user.save(function(err) {
+      if (err){
+        res.sessor.error = err;
+      } else {
+        req.session.msg = 'Review was successfully submitted';
+        req.session.review = req.body.review;
+      }
+      res.redirect('/');
+    });
   });
 };
 exports.login = function(req, res){
@@ -64,6 +102,26 @@ exports.getUserProfile = function(req, res) {
     }
   });
 };
+exports.getUsers = function(req, res) {
+  User.find()
+  .exec(function(err, user) {
+    if (!user){
+      res.json(404, {err: 'User Not Found.'});
+    } else {
+      res.json(user);
+    }
+  });
+};
+exports.getReviews = function() {
+  User.find()
+  .exec(function(err, user) {
+    if (!user){
+      res.json(404, {err: 'User Not Found.'});
+    } else {
+      res.json(user);
+    }
+  });
+}
 exports.updateUser = function(req, res){
   User.findOne({ _id: req.session.user })
   .exec(function(err, user) {
@@ -100,3 +158,36 @@ exports.deleteUser = function(req, res){
     }
   });
 };
+exports.deleteUsers = function(req, res){
+  alert("delete all users")
+  console.log("delete all");
+  User.remove({});
+  res.redirect('/signup');
+};
+exports.deleteAllReviews = function(req, res){
+  User.find()
+  .exec(function(err, user) {
+    user.set('review', '');
+    user.save(function(err) {
+      if (err){
+        res.sessor.error = err;
+      } else {
+        req.session.msg = 'All reviews deleted.';
+      }
+      res.redirect('/user');
+    });
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+

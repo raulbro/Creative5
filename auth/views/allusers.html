@@ -17,40 +17,41 @@
     </ul>
     <br><br><br>
 
-    <!-- <div class="container">
-        <div class="row">
+    <div class="container">
+<!--         <div class="row">
             <div class="col-md-10"></div>
             <div class="col-md-2">
-                <form method="POST" action="/deleteAllReviews">
+                <form method="POST" action="/deleteUsers">
                     <input class="btn btn-danger" type="submit" id="delete" value="Delete All">
                 </form>
             </div>
         </div> -->
         <br><br>
-        <div class="container">
        <div ng-controller="alluserscontroller">
-<!--            <table class="table">
+           <table class="table">
              <thead class="thead-dark">
                <tr>
-                 <th scope="col">Reviews</th>
+                 <th scope="col">Username</th>
+                 <th scope="col">Email</th>
+                 <th scope="col">Review</th>
                </tr>
              </thead>
              <tbody ng-repeat='user in users'>
                <tr>
+                 <th scope="row">{{user.username}}</th>
+                 <td>{{user.email}}</td>
                  <td>{{user.review}}</td>
                </tr>
              </tbody>
-           </table> -->
-           <div ng-repeat='user in users'>
-             <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-               <div class="card-header">Review</div>
-               <div class="card-body">
-                 <p class="card-text">{{user.review}}</p>
-               </div>
-             </div>
-           </div>
+           </table>
+
+<!--             <ul class="User-list">
+             <li ng-repeat='user in users'>
+               <p>{{user.username}}</p>
+             </li>
+           </ul> -->
        </div> 
-       </div>
+    </div>
 
 
     <script src="/javascripts/all_users.js"></script>

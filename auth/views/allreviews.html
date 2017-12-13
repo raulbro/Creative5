@@ -17,7 +17,7 @@
     </ul>
     <br><br><br>
 
-    <!-- <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-md-10"></div>
             <div class="col-md-2">
@@ -25,35 +25,26 @@
                     <input class="btn btn-danger" type="submit" id="delete" value="Delete All">
                 </form>
             </div>
-        </div> -->
+        </div>
         <br><br>
-        <div class="container">
-       <div ng-controller="alluserscontroller">
-<!--            <table class="table">
+       <div ng-controller="allreviewscontroller">
+           <table class="table">
              <thead class="thead-dark">
                <tr>
-                 <th scope="col">Reviews</th>
+                 <th scope="col">Review</th>
                </tr>
              </thead>
              <tbody ng-repeat='user in users'>
                <tr>
-                 <td>{{user.review}}</td>
+                 <th scope="row">{{user.review}}</th>
                </tr>
              </tbody>
-           </table> -->
-           <div ng-repeat='user in users'>
-             <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-               <div class="card-header">Review</div>
-               <div class="card-body">
-                 <p class="card-text">{{user.review}}</p>
-               </div>
-             </div>
-           </div>
+           </table>
        </div> 
-       </div>
+    </div>
 
 
-    <script src="/javascripts/all_users.js"></script>
+    <script src="/javascripts/allreviewscontroller.js"></script>
     <script src="http://code.angularjs.org/1.2.9/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
